@@ -1,0 +1,41 @@
+[
+  {
+    "task_id": "OPS_SPC_001",
+    "domain": "Operations & Quality Control",
+    "chart_type": "Statistical Process Control (SPC)",
+    "question": "Identify all batches that violate either the Upper Control Limit (UCL: 450 u/h) or Lower Control Limit (LCL: 350 u/h). For batches breaching the LCL, calculate the total unit shortfall relative to the nominal target (400 u/h).",
+    "ambiguity_controls": {
+      "units": "Units / Hour",
+      "rounding": "Exact integer count",
+      "conditions": "Evaluate only data points lying strictly beyond threshold boundaries."
+    },
+    "chain_of_thought": "Step 1: Inspect 20 batch points against threshold bounds.\nStep 2: Batch 6 sits at 330 u/h (< 350 LCL). Batch 14 sits at 465 u/h (> 450 UCL).\nStep 3: Isolate batch breaching Lower Control Limit: Batch 6.\nStep 4: Compute shortfall relative to nominal baseline (400 u/h): 400 - 330 = 70 units shortfall.",
+    "ground_truth": "Violating Batches: Batch 6 & Batch 14; Total LCL Shortfall: 70 units/hour"
+  },
+  {
+    "task_id": "FIN_DD_001",
+    "domain": "Financial Markets & Risk Analytics",
+    "chart_type": "Portfolio Drawdown & Capital Recovery",
+    "question": "Calculate the peak-to-trough percentage drawdown between Month 4 ($120,000) and Month 7 ($78,000). By Month 10, capital recovered to $105,000. What percentage of the initial drawdown loss was successfully recovered?",
+    "ambiguity_controls": {
+      "units": "Percentage (%)",
+      "rounding": "Round all intermediate and final calculations to 2 decimal places.",
+      "baseline": "Month 4 peak capital ($120,000)"
+    },
+    "chain_of_thought": "Step 1: Calculate absolute peak-to-trough loss: $120,000 - $78,000 = $42,000.\nStep 2: Calculate percentage drawdown: ($42,000 / $120,000) * 100 = 35.00%.\nStep 3: Calculate regained capital by Month 10: $105,000 - $78,000 = $27,000.\nStep 4: Compute recovery ratio relative to initial loss: ($27,000 / $42,000) * 100 = 64.29%.",
+    "ground_truth": "Drawdown: 35.00%; Loss Recovered: 64.29%"
+  },
+  {
+    "task_id": "OPS_PAR_001",
+    "domain": "Operations & Inventory Management",
+    "chart_type": "Pareto Analysis",
+    "question": "Referencing the secondary right Y-axis, identify the defect categories that collectively contribute to the first 80% of total operational defects. Calculate the combined total unit count for these categories.",
+    "ambiguity_controls": {
+      "units": "Defect Units",
+      "rounding": "Whole numbers",
+      "threshold": "Cumulative curve <= 80%"
+    },
+    "chain_of_thought": "Step 1: Examine cumulative percentage curve against the 80% cutoff line.\nStep 2: Packaging accounts for 53.6%. Packaging + Seal Breach reaches 79.2% (under 80%).\nStep 3: Label Misprint pushes cumulative sum to 92.5% (> 80%). Therefore, the first 80% is driven exclusively by Packaging and Seal Breach.\nStep 4: Sum unit counts: 142 + 68 = 210 units.",
+    "ground_truth": "Categories: Packaging, Seal Breach; Combined Count: 210 units"
+  }
+]
